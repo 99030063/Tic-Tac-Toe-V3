@@ -12,8 +12,13 @@ function mousePressed() {
             type = onBoard.length % 2
 
             onBoard.push(new Ox(type, midX, midY));
+            board[coords[0]+ coords[1]] = type
 
-            delete posArray[coords[0]+ coords[1]]
+            delete posArray[coords[0] + coords[1]]
+            
+            if (onBoard.length >= 5) {
+                checkIfWon()
+            }
         }
     }
 }
