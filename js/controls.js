@@ -1,4 +1,26 @@
+let ai = "X"
+let human = "O"
+let currentPlayer = human
+if (currentPlayer == human) {
+    type = 0;
+} else {
+    type = 1;
+}
+
+function nextTurn() {
+    if (currentPlayer == ai) {
+        type = 0
+        currentPlayer = human;
+    } else if (currentPlayer == human) {
+        type = 1
+        currentPlayer = ai;
+
+    }
+    return type
+}
+
 function mousePressed() {
+     
     for (let coords in posArray) {
         let x1 = posArray[coords][0][0];
         let x2 = posArray[coords][0][1];
@@ -9,14 +31,13 @@ function mousePressed() {
             //spawn "X" or "O" at the middle of x1,y1 and x2, y2
             let midX = (x1 + x2) / 2;
             let midY = (y1 + y2) / 2;
-            
-            let type = onBoard.length % 2;
 
             onBoard.push(new Ox(type, midX, midY));
             board[coords[0]][coords[1]] = type;
 
             delete posArray[coords[0] + coords[1]];
-            
+            nextTurn()
+
             if (onBoard.length >= 5) {
                 checkIfWon();
             }
@@ -34,7 +55,7 @@ function checkIfWon() {
             won = "x"
         } else if (sum == 3){
             won = "o"
-        }
+        } 
     }
     
     //Vertical check
@@ -44,7 +65,7 @@ function checkIfWon() {
             won = "x"
         } else if (sum == 3){
             won = "o"
-        }
+        } 
     }
     
     //Diagonal 1 check
@@ -53,7 +74,7 @@ function checkIfWon() {
         won = "x"
     } else if (sum == 3){
         won = "o"
-    }
+    } 
         
     //Diagonal 2 check
     sum = board[0][2] + board[1][1] + board[2][0];
@@ -61,5 +82,9 @@ function checkIfWon() {
     won = "x"
     } else if (sum == 3){
         won = "o"
+    }
+    
+    if (onBoard.length == 9) {
+        won = "tie"
     }
 }

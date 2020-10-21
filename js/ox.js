@@ -1,13 +1,13 @@
-class Ox {
+class Ox{
     constructor(type, x, y) {
         this.x = x;
         this.y = y;
         this.type = type; //what to spawn
-        this.alpha = 0
+        this.alpha = 0;
     }
 
     show() {
-        push()
+        push();
         translate(this.x, this.y);
 
         if (this.type == 0) {
