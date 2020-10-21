@@ -13,6 +13,7 @@ posArray = {
 }
 
 onBoard = [];
+let won;
 
 board = [
     [/* [0][0] [0][1] [0][2]*/],
